@@ -1,0 +1,61 @@
+{
+	"states": [
+		"start",
+		"setup",
+		"teardown",
+		"feature",
+		"scenario",
+		"given",
+		"when",
+		"then",
+		"data",
+		"end"
+	],
+	"initial_state": "start",
+	"accepted_state": "end",
+	"allowed_transitions": {
+		"start": [
+			"setup",
+			"teardown",
+			"feature",
+			"end"
+		],
+		"setup": [
+			"setup",
+			"teardown",
+			"feature",
+			"end"
+		],
+		"teardown": [
+			"setup",
+			"feature",
+			"teardown",
+			"end"
+		],
+		"feature": [
+			"scenario",
+			"feature",
+			"teardown",
+			"end"
+		],
+		"scenario": [
+			"given",
+			"when",
+			"teardown",
+			"end"
+		],
+		"given": [
+			"when",
+			"then"
+		],
+		"when": [
+			"then"
+		],
+		"then": [
+			"scenario",
+			"feature",
+			"teardown",
+			"end"
+		]
+	}
+}
