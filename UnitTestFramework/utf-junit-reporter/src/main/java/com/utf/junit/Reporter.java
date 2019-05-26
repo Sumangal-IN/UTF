@@ -1,8 +1,7 @@
 package com.utf.junit;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,6 +19,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.kingfisher.utf.exception.ApplicationConstant;
 import com.kingfisher.utf.exception.LoggerConstant;
 import com.utf.junit.model.Failure;
 import com.utf.junit.model.TestCase;
@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Reporter {
 
-	Document document;
 	TestSuite testSuite;
 
 	public Reporter(String name) throws ParserConfigurationException {
@@ -56,33 +55,38 @@ public class Reporter {
 		return this;
 	}
 
-	public void publish(File XMLFile) throws FileNotFoundException, ParserConfigurationException, TransformerException {
+	public String publish() throws FileNotFoundException, ParserConfigurationException, TransformerException {
 		log.debug(LoggerConstant.DEBUG_LOG_ENTERED, "publish()");
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document doc = builder.newDocument();
 
-		Element nodeTestSuite = doc.createElement("testsuite");
-		nodeTestSuite.setAttribute("name", this.getTestSuite().getName());
-		nodeTestSuite.setAttribute("tests", Integer.toString(this.getTestSuite().getTests()));
-		nodeTestSuite.setAttribute("failures", Integer.toString(this.getTestSuite().getFailures()));
-		nodeTestSuite.setAttribute("time", Double.toString(this.getTestSuite().getTime()));
+		Element nodeTestSuite = doc.createElement(ApplicationConstant.JUNIT_XML_NODE_TESTSUITE);
+		nodeTestSuite.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_NAME, this.getTestSuite().getName());
+		nodeTestSuite.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_TESTS,
+				Integer.toString(this.getTestSuite().getTests()));
+		nodeTestSuite.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_FAILURES,
+				Integer.toString(this.getTestSuite().getFailures()));
+		nodeTestSuite.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_TIME,
+				Double.toString(this.getTestSuite().getTime()));
 		for (TestCase testCase : this.getTestSuite().getTestCases()) {
-			Element nodeTestCase = doc.createElement("testcase");
-			nodeTestCase.setAttribute("name", testCase.getName());
-			nodeTestCase.setAttribute("time", Double.toString(testCase.getTime()));
+			Element nodeTestCase = doc.createElement(ApplicationConstant.JUNIT_XML_NODE_TESTCASE);
+			nodeTestCase.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_NAME, testCase.getName());
+			nodeTestCase.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_TIME,
+					Double.toString(testCase.getTime()));
 			if (testCase.getFailure() != null) {
-				Element nodefailure = doc.createElement("failure");
-				nodefailure.setAttribute("message", testCase.getFailure().getMessage());
-				nodefailure.setAttribute("text", testCase.getFailure().getText());
-				nodefailure.setAttribute("type", testCase.getFailure().getType());
+				Element nodefailure = doc.createElement(ApplicationConstant.JUNIT_XML_NODE_FAILURE);
+				nodefailure.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_MESSAGE,
+						testCase.getFailure().getMessage());
+				nodefailure.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_TEXT, testCase.getFailure().getText());
+				nodefailure.setAttribute(ApplicationConstant.JUNIT_XML_ATTRIBUTE_TYPE, testCase.getFailure().getType());
 				nodeTestCase.appendChild(nodefailure);
 			}
 			nodeTestSuite.appendChild(nodeTestCase);
 		}
 		doc.appendChild(nodeTestSuite);
 
-		// Transforn
+		// Transform
 		TransformerFactory tFactory = TransformerFactory.newInstance();
 		Transformer transformer = tFactory.newTransformer();
 
@@ -90,12 +94,12 @@ public class Reporter {
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
-		// Save into file
-		Source s = new DOMSource(doc);
-		Result res = new StreamResult(new FileOutputStream(XMLFile));
-		transformer.transform(s, res);
-		log.debug("XML File Created Succesfully");
+		// transform document to String
+		StringWriter writer = new StringWriter();
+		transformer.transform(new DOMSource(doc), new StreamResult(writer));
+		String xmlString = writer.getBuffer().toString();
 		log.debug(LoggerConstant.DEBUG_LOG_LEAVING, "publish()");
+		return xmlString;
 	}
 
 }
