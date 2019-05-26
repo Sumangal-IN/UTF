@@ -12,11 +12,13 @@
 		"end",
 		"comment"
 	],
-	"ignorable_state": [
+	"ignorable_states": [
 		"comment"
 	],
 	"initial_state": "start",
-	"accepted_state": "end",
+	"accepted_states": [
+		"end"
+	],
 	"allowed_transitions": {
 		"start": [
 			"setup",

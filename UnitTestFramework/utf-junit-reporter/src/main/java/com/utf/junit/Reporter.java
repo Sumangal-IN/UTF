@@ -8,8 +8,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -39,19 +37,23 @@ public class Reporter {
 	}
 
 	public Reporter addTestCases(String name, Double time, Failure failure) {
+		log.debug(LoggerConstant.DEBUG_LOG_ENTERED, "addTestCases()");
 		TestCase testCase = new TestCase(name, time, failure);
 		this.getTestSuite().getTestCases().add(testCase);
 		this.getTestSuite().setTests(this.getTestSuite().getTests() + 1);
 		this.getTestSuite().setTime(this.getTestSuite().getTime() + time);
 		this.getTestSuite().setFailures(this.getTestSuite().getFailures() + 1);
+		log.debug(LoggerConstant.DEBUG_LOG_LEAVING, "addTestCases()");
 		return this;
 	}
 
 	public Reporter addTestCases(String name, Double time) {
+		log.debug(LoggerConstant.DEBUG_LOG_ENTERED, "addTestCases()");
 		TestCase testCase = new TestCase(name, time, null);
 		this.getTestSuite().getTestCases().add(testCase);
 		this.getTestSuite().setTime(this.getTestSuite().getTime() + time);
 		this.getTestSuite().setTests(this.getTestSuite().getTests() + 1);
+		log.debug(LoggerConstant.DEBUG_LOG_LEAVING, "addTestCases()");
 		return this;
 	}
 
