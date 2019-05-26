@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.kingfisher.utf.exception.compilerException;
+import com.kingfisher.utf.constant.CompilerException;
 
 public class FeatureCompilerTest {
 
 	@Test
-	public void testCompile() throws compilerException, IOException {
-		FeatureCompiler.compile(this.getClass().getClassLoader().getResourceAsStream("user.feature"));
+	public void testCompile() throws CompilerException, IOException {
+		FeatureCompiler.compile(this.getClass().getClassLoader().getResourceAsStream("test.feature"));
 	}
 
 }

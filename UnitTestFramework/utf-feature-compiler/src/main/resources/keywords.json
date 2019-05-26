@@ -1,0 +1,72 @@
+{
+	"feature": {
+		"trim": true,
+		"regex": "^Feature:",
+		"value": {
+			"exclude": [
+				"^Feature:"
+			],
+			"trim": true
+		}
+	},
+	"scenario": {
+		"trim": true,
+		"regex": "^Scenario:",
+		"value": {
+			"exclude": [
+				"^Scenario:"
+			],
+			"trim": true
+		}
+	},
+	"setup": {
+		"trim": true,
+		"regex": "^Setup:$"
+	},
+	"teardown": {
+		"trim": true,
+		"regex": "^Teardown:$"
+	},
+	"given": {
+		"trim": true,
+		"regex": "^Given",
+		"value": {
+			"exclude": [
+				"Given"
+			],
+			"trim": true
+		}
+	},
+	"then": {
+		"trim": true,
+		"regex": "^Then",
+		"value": {
+			"exclude": [
+				"Then"
+			],
+			"trim": true
+		}
+	},
+	"when": {
+		"trim": true,
+		"regex": "^When",
+		"value": {
+			"exclude": [
+				"When"
+			],
+			"trim": true
+		}
+	},
+	"data": {
+		"trim": true,
+		"regex": "^Data:$"
+	},
+	"end": {
+		"trim": true,
+		"regex": "^End$"
+	},
+	"comment": {
+		"trim": true,
+		"regex": "^#"
+	}
+}
