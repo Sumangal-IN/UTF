@@ -9,11 +9,7 @@
 		"when",
 		"then",
 		"data",
-		"end",
-		"comment"
-	],
-	"ignorable_states": [
-		"comment"
+		"end"
 	],
 	"initial_state": "start",
 	"accepted_states": [

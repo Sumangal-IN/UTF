@@ -29,16 +29,6 @@ public class NFATest {
 	}
 
 	@Test
-	public void testIsStateIgnorableTrue() throws IOException {
-		assertTrue(new NFA().isStateIgnorable("comment"));
-	}
-
-	@Test
-	public void testIsStateIgnorableFalse() throws IOException {
-		assertFalse(new NFA().isStateIgnorable("setup"));
-	}
-
-	@Test
 	public void testIsStateAcceptableTrue() throws IOException {
 		assertTrue(new NFA().isStateAcceptable("end"));
 	}

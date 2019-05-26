@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 public class NFA {
-	private String state;
+
 	private static JsonObject stateTransitions;
 
 	public NFA() throws IOException {
@@ -30,14 +30,6 @@ public class NFA {
 				if (allowedState.getAsString().equals(currentState))
 					return true;
 			}
-		}
-		return false;
-	}
-
-	public boolean isStateIgnorable(String state) {
-		for (JsonElement ignorableState : stateTransitions.get("ignorable_states").getAsJsonArray()) {
-			if (ignorableState.getAsString().equals(state))
-				return true;
 		}
 		return false;
 	}

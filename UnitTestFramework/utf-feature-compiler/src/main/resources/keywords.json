@@ -1,72 +1,63 @@
-{
-	"feature": {
-		"trim": true,
-		"regex": "^Feature:",
+[
+	{
+		"state": "feature",
+		"regex": "^Feature:.*",
 		"value": {
 			"exclude": [
 				"^Feature:"
-			],
-			"trim": true
+			]
 		}
 	},
-	"scenario": {
-		"trim": true,
-		"regex": "^Scenario:",
+	{
+		"state": "scenario",
+		"regex": "^Scenario:.*",
 		"value": {
 			"exclude": [
 				"^Scenario:"
-			],
-			"trim": true
+			]
 		}
 	},
-	"setup": {
-		"trim": true,
+	{
+		"state": "setup",
 		"regex": "^Setup:$"
 	},
-	"teardown": {
-		"trim": true,
+	{
+		"state": "teardown",
 		"regex": "^Teardown:$"
 	},
-	"given": {
-		"trim": true,
-		"regex": "^Given",
+	{
+		"state": "given",
+		"regex": "^Given.*",
 		"value": {
 			"exclude": [
-				"Given"
-			],
-			"trim": true
+				"^Given"
+			]
 		}
 	},
-	"then": {
-		"trim": true,
-		"regex": "^Then",
+	{
+		"state": "then",
+		"regex": "^Then.*",
 		"value": {
 			"exclude": [
-				"Then"
-			],
-			"trim": true
+				"^Then"
+			]
 		}
 	},
-	"when": {
-		"trim": true,
-		"regex": "^When",
+	{
+		"state": "when",
+		"regex": "^When.*",
 		"value": {
 			"exclude": [
-				"When"
-			],
-			"trim": true
+				"^When"
+			]
 		}
 	},
-	"data": {
-		"trim": true,
+	{
+		"state": "data",
 		"regex": "^Data:$"
 	},
-	"end": {
-		"trim": true,
+	{
+		"state": "end",
 		"regex": "^End$"
-	},
-	"comment": {
-		"trim": true,
-		"regex": "^#"
 	}
-}
+]
