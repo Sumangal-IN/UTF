@@ -1,4 +1,4 @@
-package com.kingfisher.utf.exception;
+package com.kingfisher.utf.constant;
 
 public class ApplicationConstant {
 

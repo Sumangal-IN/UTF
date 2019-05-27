@@ -1,4 +1,4 @@
-package com.kingfisher.utf.constant;
+package com.kingfisher.utf.exception;
 
 public class CompilerException extends Exception {
 

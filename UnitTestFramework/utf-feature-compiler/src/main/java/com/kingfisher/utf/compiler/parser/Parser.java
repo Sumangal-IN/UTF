@@ -10,11 +10,14 @@ import com.google.gson.JsonSyntaxException;
 import com.kingfisher.utf.compiler.lexer.Lexer;
 import com.kingfisher.utf.compiler.model.Statement;
 import com.kingfisher.utf.compiler.parser.statemachine.NFA;
-import com.kingfisher.utf.exception.ParseException;
+import com.kingfisher.utf.exception.ParserException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Parser {
 
-	public JsonObject parse(String featureContent) throws JsonSyntaxException, IOException, ParseException {
+	public JsonObject parse(String featureContent) throws JsonSyntaxException, IOException, ParserException {
 		Lexer lexer = new Lexer();
 		Scanner scanner = new Scanner(featureContent);
 		int lineNo = 0;
@@ -22,26 +25,34 @@ public class Parser {
 		while (scanner.hasNextLine()) {
 			lineNo = lineNo + 1;
 			Statement statement = lexer.analyseKeyword(scanner.nextLine(), lineNo);
+			
 			if (statement != null)
+			{
+				log.info(statement.toString());
 				statements.add(statement);
+			}
 		}
 		scanner.close();
 		checkGrammar(statements);
 		return null;
 	}
 
-	private boolean checkGrammar(List<Statement> statements) throws IOException, ParseException {
+	private boolean checkGrammar(List<Statement> statements) throws IOException, ParserException {
 		NFA stateMachine = new NFA();
 		String currentState = stateMachine.getInitialState();
 		for (Statement statement : statements) {
 			if (stateMachine.isTransitionValid(currentState, statement.getKeyword())) {
 				currentState = statement.getKeyword();
 			} else {
-				throw new ParseException(
-						"@line " + statement.getLineNo() + " Unexpected keyword " + statement.getKeyword()
+				throw new ParserException(
+						"@line " + statement.getLineNo() + ": Unexpected keyword " + statement.getKeyword()
 								+ " Expected one of the " + stateMachine.getExpectedNextState(currentState));
 			}
 		}
 		return true;
+	}
+
+	private String exportJSON(List<Statement> statements) {
+		return null;
 	}
 }

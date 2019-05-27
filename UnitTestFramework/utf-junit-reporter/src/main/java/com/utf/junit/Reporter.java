@@ -17,8 +17,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.kingfisher.utf.exception.ApplicationConstant;
-import com.kingfisher.utf.exception.LoggerConstant;
+import com.kingfisher.utf.constant.ApplicationConstant;
+import com.kingfisher.utf.constant.LoggerConstant;
 import com.utf.junit.model.Failure;
 import com.utf.junit.model.TestCase;
 import com.utf.junit.model.TestSuite;
