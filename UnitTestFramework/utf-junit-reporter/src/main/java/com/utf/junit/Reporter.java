@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Reporter {
 
-	TestSuite testSuite;
+	private TestSuite testSuite;
 
 	public Reporter(String name) throws ParserConfigurationException {
 		testSuite = new TestSuite(name, 0, 0, 0d, new ArrayList<TestCase>());

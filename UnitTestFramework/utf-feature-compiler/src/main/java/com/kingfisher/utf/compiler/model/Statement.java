@@ -12,4 +12,5 @@ public class Statement {
 	private String line;
 	private String keyword;
 	private String value;
+	private boolean actionable;
 }

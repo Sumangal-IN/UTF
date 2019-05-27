@@ -8,7 +8,8 @@
 		"Given",
 		"When",
 		"Then",
-		"Data",
+		"DataHeader",
+		"DataRow",
 		"End"
 	],
 	"parent": {
@@ -60,6 +61,17 @@
 			"Then"
 		],
 		"Then": [
+			"DataHeader",
+			"Scenario",
+			"Feature",
+			"Teardown",
+			"End"
+		],
+		"DataHeader": [
+			"DataRow"
+		],
+		"DataRow": [
+			"DataRow",
 			"Scenario",
 			"Feature",
 			"Teardown",

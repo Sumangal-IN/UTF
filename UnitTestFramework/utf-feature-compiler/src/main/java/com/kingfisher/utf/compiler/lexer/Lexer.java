@@ -40,9 +40,10 @@ public class Lexer {
 							value = value.replace(matcher.group(), "");
 					}
 					return new Statement(lineNo, line, keyword.getAsJsonObject().get("state").getAsString(),
-							trim(value));
+							trim(value), keyword.getAsJsonObject().get("actionable").getAsBoolean());
 				} else
-					return new Statement(lineNo, line, keyword.getAsJsonObject().get("state").getAsString(), null);
+					return new Statement(lineNo, line, keyword.getAsJsonObject().get("state").getAsString(), null,
+							keyword.getAsJsonObject().get("actionable").getAsBoolean());
 			}
 		}
 		return null;

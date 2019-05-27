@@ -6,7 +6,8 @@
 			"exclude": [
 				"^Feature:"
 			]
-		}
+		},
+		"actionable":false
 	},
 	{
 		"state": "Scenario",
@@ -15,7 +16,8 @@
 			"exclude": [
 				"^Scenario:"
 			]
-		}
+		},
+		"actionable":false
 	},
 	{
 		"state": "Setup",
@@ -24,7 +26,8 @@
 			"exclude": [
 				"^Setup:"
 			]
-		}
+		},
+		"actionable":true
 	},
 	{
 		"state": "Teardown",
@@ -33,7 +36,8 @@
 			"exclude": [
 				"^Teardown:"
 			]
-		}
+		},
+		"actionable":true
 	},
 	{
 		"state": "Given",
@@ -42,7 +46,8 @@
 			"exclude": [
 				"^Given"
 			]
-		}
+		},
+		"actionable":true
 	},
 	{
 		"state": "Then",
@@ -51,7 +56,8 @@
 			"exclude": [
 				"^Then"
 			]
-		}
+		},
+		"actionable":true
 	},
 	{
 		"state": "When",
@@ -60,14 +66,31 @@
 			"exclude": [
 				"^When"
 			]
-		}
+		},
+		"actionable":true
 	},
 	{
-		"state": "Data",
-		"regex": "^Data:$"
+		"state": "DataHeader",
+		"regex": "^Data:.*",
+		"value": {
+			"exclude": [
+				"^Data:"
+			]
+		},
+		"actionable":false
+	},
+	{
+		"state": "DataRow",
+		"regex": "^\\|.*",
+		"value": {
+			"exclude": [
+			]
+		},
+		"actionable":false
 	},
 	{
 		"state": "End",
-		"regex": "^End$"
+		"regex": "^End$",
+		"actionable":false
 	}
 ]

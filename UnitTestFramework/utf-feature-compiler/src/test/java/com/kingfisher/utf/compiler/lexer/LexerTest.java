@@ -15,26 +15,28 @@ public class LexerTest {
 	public void testAnalyseKeywordWithValue() throws JsonSyntaxException, IOException {
 		String line = "Scenario: New Scenario";
 		int lineNo = 1;
-		assertEquals(new Statement(lineNo, line, "scenario", "New Scenario"), new Lexer().analyseKeyword(line, lineNo));
+		assertEquals(new Statement(lineNo, line, "Scenario", "New Scenario", false),
+				new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordWithValue2() throws JsonSyntaxException, IOException {
 		String line = "Given there is a bus";
 		int lineNo = 1;
-		assertEquals(new Statement(lineNo, line, "given", "there is a bus"), new Lexer().analyseKeyword(line, lineNo));
+		assertEquals(new Statement(lineNo, line, "Given", "there is a bus", true),
+				new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordWithoutValue() throws JsonSyntaxException, IOException {
-		String line = "Setup:";
+		String line = "Setup: Create queue A";
 		int lineNo = 1;
-		assertEquals(new Statement(lineNo, line, "setup", null), new Lexer().analyseKeyword(line, lineNo));
+		assertEquals(new Statement(lineNo, line, "Setup", "Create queue A", true), new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordInvalid() throws JsonSyntaxException, IOException {
-		String line = "Setup: ok";
+		String line = "End ok";
 		int lineNo = 1;
 		assertEquals(null, new Lexer().analyseKeyword(line, lineNo));
 	}

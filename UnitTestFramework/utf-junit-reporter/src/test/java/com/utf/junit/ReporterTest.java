@@ -16,6 +16,14 @@ public class ReporterTest {
 
 	@Test
 	public void testPublish() throws ParserConfigurationException, TransformerException, IOException {
+		Reporter r=new Reporter("MyTestSuite");
+		Reporter r1=new Reporter("MyTestSuite");
+		r1.addTestCases("MyTestCase1", 1.0)
+		 .addTestCases("MyTestCase2", 1.5);
+		r.addTestCases("MyTestCase3", 0.4, new Failure("Sorry My fault", "WARN", "I will be careful next time"));
+		r1.publish();
+		r.publish();
+		
 		String actualXML = new Reporter("MyTestSuite")
 				.addTestCases("MyTestCase1", 1.0)
 				.addTestCases("MyTestCase2", 1.5)
