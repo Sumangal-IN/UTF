@@ -5,9 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-import com.utf.junit.model.Failure;
+
+import com.kingfisher.utf.junit.JUnitReporter;
+import com.kingfisher.utf.junit.model.Failure;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
@@ -15,20 +18,11 @@ import org.junit.Test;
 public class ReporterTest {
 
 	@Test
-	public void testPublish() throws ParserConfigurationException, TransformerException, IOException {
-		Reporter r=new Reporter("MyTestSuite");
-		Reporter r1=new Reporter("MyTestSuite");
-		r1.addTestCases("MyTestCase1", 1.0)
-		 .addTestCases("MyTestCase2", 1.5);
-		r.addTestCases("MyTestCase3", 0.4, new Failure("Sorry My fault", "WARN", "I will be careful next time"));
-		r1.publish();
-		r.publish();
-		
-		String actualXML = new Reporter("MyTestSuite")
-				.addTestCases("MyTestCase1", 1.0)
-				.addTestCases("MyTestCase2", 1.5)
-				.addTestCases("MyTestCase3", 0.4, new Failure("Sorry My fault", "WARN", "I will be careful next time"))
-				.publish();
+	public void testPublish() throws ParserConfigurationException, TransformerException, IOException, JAXBException {
+		String actualXML = new JUnitReporter("MyTestSuite").addTestCase("MyTestCase1", 1.0)
+				.addTestCase("MyTestCase2", 1.5)
+				.addTestCase("MyTestCase3", 0.4, new Failure("Sorry My fault", "WARN", "I will be careful next time"))
+				.publishXml();
 		String expectedXML = IOUtils.toString(this.getClass().getClassLoader().getResourceAsStream("output.xml"),
 				StandardCharsets.UTF_8.name());
 		assertEquals(expectedXML, actualXML);
