@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Statement {
+	private int lineNo;
 	private String line;
 	private String keyword;
 	private String value;

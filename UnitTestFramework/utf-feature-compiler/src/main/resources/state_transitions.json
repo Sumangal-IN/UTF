@@ -1,63 +1,69 @@
 {
 	"states": [
-		"start",
-		"setup",
-		"teardown",
-		"feature",
-		"scenario",
-		"given",
-		"when",
-		"then",
-		"data",
-		"end"
+		"Start",
+		"Setup",
+		"Teardown",
+		"Feature",
+		"Scenario",
+		"Given",
+		"When",
+		"Then",
+		"Data",
+		"End"
 	],
-	"initial_state": "start",
+	"parent": {
+		"Scenario": [
+			"Feature"
+		],
+		"When": [
+			"Scenario"
+		],
+		"Given": [
+			"Scenario"
+		],
+		"Then": [
+			"Scenario"
+		]
+	},
+	"initial_state": "Start",
 	"accepted_states": [
-		"end"
+		"End"
 	],
 	"allowed_transitions": {
-		"start": [
-			"setup",
-			"teardown",
-			"feature",
-			"end"
+		"Start": [
+			"Setup",
+			"Feature",
+			"End"
 		],
-		"setup": [
-			"setup",
-			"teardown",
-			"feature",
-			"end"
+		"Setup": [
+			"Setup",
+			"Feature",
+			"End"
 		],
-		"teardown": [
-			"setup",
-			"feature",
-			"teardown",
-			"end"
+		"Teardown": [
+			"Teardown",
+			"End"
 		],
-		"feature": [
-			"scenario",
-			"feature",
-			"teardown",
-			"end"
+		"Feature": [
+			"Scenario",
+			"End"
 		],
-		"scenario": [
-			"given",
-			"when",
-			"teardown",
-			"end"
+		"Scenario": [
+			"Given",
+			"When"
 		],
-		"given": [
-			"when",
-			"then"
+		"Given": [
+			"When",
+			"Then"
 		],
-		"when": [
-			"then"
+		"When": [
+			"Then"
 		],
-		"then": [
-			"scenario",
-			"feature",
-			"teardown",
-			"end"
+		"Then": [
+			"Scenario",
+			"Feature",
+			"Teardown",
+			"End"
 		]
 	}
 }

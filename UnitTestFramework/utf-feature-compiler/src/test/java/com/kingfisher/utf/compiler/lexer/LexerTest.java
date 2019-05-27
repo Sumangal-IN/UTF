@@ -14,55 +14,64 @@ public class LexerTest {
 	@Test
 	public void testAnalyseKeywordWithValue() throws JsonSyntaxException, IOException {
 		String line = "Scenario: New Scenario";
-		assertEquals(new Statement(line, "scenario", "New Scenario"), new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(new Statement(lineNo, line, "scenario", "New Scenario"), new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordWithValue2() throws JsonSyntaxException, IOException {
 		String line = "Given there is a bus";
-		assertEquals(new Statement(line, "given", "there is a bus"), new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(new Statement(lineNo, line, "given", "there is a bus"), new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordWithoutValue() throws JsonSyntaxException, IOException {
 		String line = "Setup:";
-		assertEquals(new Statement(line, "setup", null), new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(new Statement(lineNo, line, "setup", null), new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordInvalid() throws JsonSyntaxException, IOException {
 		String line = "Setup: ok";
-		assertEquals(null, new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(null, new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordEmpty() throws JsonSyntaxException, IOException {
 		String line = "";
-		assertEquals(null, new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(null, new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordWhiteSpaces() throws JsonSyntaxException, IOException {
 		String line = "   ";
-		assertEquals(null, new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(null, new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseKeywordTabs() throws JsonSyntaxException, IOException {
 		String line = " \t ";
-		assertEquals(null, new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(null, new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseComment() throws JsonSyntaxException, IOException {
 		String line = "#this is a comment";
-		assertEquals(null, new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(null, new Lexer().analyseKeyword(line, lineNo));
 	}
 
 	@Test
 	public void testAnalyseArbitaryText() throws JsonSyntaxException, IOException {
 		String line = " this is a text";
-		assertEquals(null, new Lexer().analyseKeyword(line));
+		int lineNo = 1;
+		assertEquals(null, new Lexer().analyseKeyword(line, lineNo));
 	}
 
 }

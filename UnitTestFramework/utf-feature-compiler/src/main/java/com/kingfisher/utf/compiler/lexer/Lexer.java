@@ -24,7 +24,7 @@ public class Lexer {
 				.getAsJsonArray();
 	}
 
-	public Statement analyseKeyword(String line) {
+	public Statement analyseKeyword(String line, int lineNo) {
 		line = trim(line);
 		if (line.startsWith("#") || line.equals(""))
 			return null;
@@ -39,9 +39,10 @@ public class Lexer {
 						if (matcher.find())
 							value = value.replace(matcher.group(), "");
 					}
-					return new Statement(line, keyword.getAsJsonObject().get("state").getAsString(), trim(value));
+					return new Statement(lineNo, line, keyword.getAsJsonObject().get("state").getAsString(),
+							trim(value));
 				} else
-					return new Statement(line, keyword.getAsJsonObject().get("state").getAsString(), null);
+					return new Statement(lineNo, line, keyword.getAsJsonObject().get("state").getAsString(), null);
 			}
 		}
 		return null;

@@ -48,4 +48,13 @@ public class NFATest {
 		assertFalse(new NFA().isStateValid("abc"));
 	}
 
+	@Test
+	public void testGetExpectedNextState() throws IOException {
+		assertEquals("[setup, feature, end]", new NFA().getExpectedNextState("start").toString());
+	}
+
+	@Test
+	public void testGetExpectedNextStateInvalid() throws IOException {
+		assertEquals(null, new NFA().getExpectedNextState("xyz"));
+	}
 }

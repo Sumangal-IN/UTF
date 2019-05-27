@@ -1,6 +1,6 @@
 [
 	{
-		"state": "feature",
+		"state": "Feature",
 		"regex": "^Feature:.*",
 		"value": {
 			"exclude": [
@@ -9,7 +9,7 @@
 		}
 	},
 	{
-		"state": "scenario",
+		"state": "Scenario",
 		"regex": "^Scenario:.*",
 		"value": {
 			"exclude": [
@@ -18,15 +18,25 @@
 		}
 	},
 	{
-		"state": "setup",
-		"regex": "^Setup:$"
+		"state": "Setup",
+		"regex": "^Setup:.*",
+		"value": {
+			"exclude": [
+				"^Setup:"
+			]
+		}
 	},
 	{
-		"state": "teardown",
-		"regex": "^Teardown:$"
+		"state": "Teardown",
+		"regex": "^Teardown:.*",
+		"value": {
+			"exclude": [
+				"^Teardown:"
+			]
+		}
 	},
 	{
-		"state": "given",
+		"state": "Given",
 		"regex": "^Given.*",
 		"value": {
 			"exclude": [
@@ -35,7 +45,7 @@
 		}
 	},
 	{
-		"state": "then",
+		"state": "Then",
 		"regex": "^Then.*",
 		"value": {
 			"exclude": [
@@ -44,7 +54,7 @@
 		}
 	},
 	{
-		"state": "when",
+		"state": "When",
 		"regex": "^When.*",
 		"value": {
 			"exclude": [
@@ -53,11 +63,11 @@
 		}
 	},
 	{
-		"state": "data",
+		"state": "Data",
 		"regex": "^Data:$"
 	},
 	{
-		"state": "end",
+		"state": "End",
 		"regex": "^End$"
 	}
 ]
