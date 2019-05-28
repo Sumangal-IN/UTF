@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class JUnitReporter {
 
-	TestSuite testSuite;
+	private TestSuite testSuite;
 
 	public JUnitReporter(String name) {
 		testSuite = new TestSuite(name, 0, 0, 0d, new ArrayList<TestCase>());
