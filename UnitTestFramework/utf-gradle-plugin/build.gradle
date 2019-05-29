@@ -1,0 +1,27 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+dependencies {
+    compile gradleApi()
+}
+
+gradlePlugin {
+    plugins {
+        demoPlugin {
+            id = 'com.kingfisher.utf'
+            implementationClass = 'com.kingfisher.utf.plugin.UnitTestPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        pluginPublication (MavenPublication) {
+            groupId    'com.kingfisher.utf'
+            artifactId 'unit-test-framework'
+            version    '1.0.0'
+        }
+    }
+}
