@@ -15,7 +15,7 @@ buildscript {
     	mavenLocal()
     }
     dependencies {
-        classpath group: 'com.kingfisher.utf', name: 'utf-gradle-plugin', version: '0.0.1'
+        classpath group: 'com.kingfisher.utf', name: 'utf-gradle-plugin', version: '1.0'
     }
 }
 
