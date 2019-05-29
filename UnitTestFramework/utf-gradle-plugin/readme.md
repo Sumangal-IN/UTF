@@ -1,12 +1,12 @@
 
-### How to build this plugin
+### How to build this plugin?
 
 Execute the following gradle task
 ```
 gradlew publishToMavenLocal
 ```
 
-### How to use the pugin in other projects
+### How to use the pugin in other projects?
 
 ```
 buildscript {
