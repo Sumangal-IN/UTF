@@ -8,6 +8,8 @@ import com.kingfisher.utf.plugin.task.UnitTest;
 public class UnitTestPlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		project.getTasks().create("UnitTest", UnitTest.class, (task) -> {
+			task.setFeatureDir((String)project.findProperty("featureDir"));
+			task.setReportDir((String)project.findProperty("reportDir"));
 		});
 	}
 }

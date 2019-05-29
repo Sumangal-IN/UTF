@@ -3,6 +3,8 @@ plugins {
     id 'maven-publish'
 }
 
+apply plugin: 'java'
+
 dependencies {
     compile gradleApi()
 }
@@ -19,9 +21,12 @@ gradlePlugin {
 publishing {
     publications {
         pluginPublication (MavenPublication) {
-            groupId    'com.kingfisher.utf'
+            groupId    project.group
             artifactId 'unit-test-framework'
-            version    '1.0.0'
+            version    project.version
         }
     }
 }
+
+group='com.kingfisher.utf'
+version='1.0'
